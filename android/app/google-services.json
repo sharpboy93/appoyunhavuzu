@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1085454024454",
+    "project_id": "flutter-app-cf51c",
+    "storage_bucket": "flutter-app-cf51c.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1085454024454:android:ceed6cee5df34f76e62887",
+        "android_client_info": {
+          "package_name": "com.oyunhavuzu.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAvqW4LgFoemToc0ggL8uFyJkbUMGMbSpM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

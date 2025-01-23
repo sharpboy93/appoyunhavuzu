@@ -1,0 +1,67 @@
+workflows:
+  ios-workflow:
+    name: iOS Production
+    instance_type: mac_mini_m1
+    max_build_duration: 120
+    environment:
+      ios_signing:
+        distribution_type: app_store
+        bundle_identifier: com.oyunhavuzu.app
+      vars:
+        APP_STORE_ID: "6740595500"
+        BUNDLE_ID: "com.oyunhavuzu.app"
+        XCODE_WORKSPACE: "Runner.xcworkspace"
+        XCODE_SCHEME: "Runner"
+        IPHONEOS_DEPLOYMENT_TARGET: "13.0"
+      flutter: 3.13.9
+      xcode: latest
+      cocoapods: default
+    cache:
+      cache_paths:
+        - ~/.pub-cache
+        - vendor/bundle
+    scripts:
+      - name: Set up code signing settings
+        script: |
+          keychain initialize
+      - name: Get Flutter packages
+        script: |
+          flutter pub get
+      - name: Clean and Install pods
+        script: |
+          cd ios
+          pod deintegrate
+          pod cache clean --all
+          rm -rf Pods
+          rm -rf .symlinks
+          rm -f Podfile.lock
+          /usr/libexec/PlistBuddy -c "Set :MinimumOSVersion 13.0" Runner/Info.plist
+          pod install
+      - name: Set minimum iOS deployment target to 13.0
+        script: sed -i '' 's/platform :ios, .*/platform :ios, \'13.0\'/' ios/Podfile
+      - name: Update CocoaPods
+        script: sudo gem install cocoapods
+      - name: Update and Install Pods
+        script: |
+          cd ios
+          pod install --repo-update
+      - name: Flutter build ipa
+        script: |
+          BUILD_NUMBER=$(($(app-store-connect get-latest-app-store-build-number "$APP_STORE_ID" 2>/dev/null || echo 0) + 1))
+          flutter build ipa --verbose --release \
+            --build-name=1.0.0 \
+            --build-number=$BUILD_NUMBER \
+            --export-options-plist=/Users/builder/export_options.plist
+    artifacts:
+      - build/ios/ipa/*.ipa
+      - /tmp/xcodebuild_logs/*.log
+      - flutter_drive.log
+    publishing:
+      app_store_connect:
+        api_key: $APP_STORE_CONNECT_PRIVATE_KEY
+        key_id: $APP_STORE_CONNECT_KEY_IDENTIFIER
+        issuer_id: $APP_STORE_CONNECT_ISSUER_ID
+        submit_to_testflight: true
+        beta_groups:
+          - Testers
+        submit_to_app_store: false
