@@ -1,9 +1,9 @@
 import 'package:mighty_games/utils/Extensions/shared_pref.dart';
 
-const AppName = "Mighty Games";
+const AppName = "Oyun Havuzu";
 
 /// Note: /api/ is required after your domain. Ex if your domain is www.abc.com then ${mBaseUrl} will be  https://www.abc.com/api/
-const mBaseUrl = 'https://apps.meetmighty.com/mightygames/api/';
+const mBaseUrl = 'https://app.oyunhavuzu.com/api/';
 
 // Facebook
 const FACEBOOK_KEY = '';
