@@ -161,7 +161,7 @@ class _MyAppState extends State<MyApp> {
         debugShowCheckedModeBanner: false,
         home: SplashScreen(),
          navigatorKey: navigatorKey,
-        title: AppName,
+        title: 'Oyun Havuzu',
         theme: AppTheme.lightTheme,
         darkTheme: AppTheme.darkTheme,
         themeMode: appStore.isDarkModeOn ? ThemeMode.dark : ThemeMode.light,
