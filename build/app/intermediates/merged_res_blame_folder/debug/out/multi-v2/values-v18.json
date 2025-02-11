@@ -1,0 +1,19 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.oyunhavuzu.app-mergeDebugResources-69:/values-v18/values-v18.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\Pc\\.gradle\\caches\\transforms-3\\81145ce43018da1d68302c1a5440bfcb\\transformed\\appcompat-1.6.1\\res\\values-v18\\values-v18.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "48",
+                        "endOffsets": "99"
+                    }
+                }
+            ]
+        }
+    ]
+}

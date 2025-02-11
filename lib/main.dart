@@ -5,6 +5,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:app_tracking_transparency/app_tracking_transparency.dart';
 import '../../store/AppStore.dart';
 import '../../store/WishListStore/WishListStore.dart';
 import '../../utils/Extensions/Commons.dart';
@@ -56,6 +57,7 @@ Future<void> initialize({
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await _requestTrackingPermission();
   sharedPreferences = await SharedPreferences.getInstance();
   String wishListString = getStringAsync(WISHLIST_ITEM_LIST);
   if (wishListString.isNotEmpty) {
@@ -111,6 +113,19 @@ void oneSignalData() {
   // await setValue(PLAYER_ID, OneSignal.User.pushSubscription.id);
 
 
+}
+
+Future<void> _requestTrackingPermission() async {
+  try {
+    final status = await AppTrackingTransparency.trackingAuthorizationStatus;
+    if (status == TrackingStatus.notDetermined) {
+      // iOS 14+ users will see the dialog for the first time
+      await Future.delayed(const Duration(milliseconds: 200));
+      await AppTrackingTransparency.requestTrackingAuthorization();
+    }
+  } catch (e) {
+    print('Error requesting tracking permission: $e');
+  }
 }
 
 class MyApp extends StatefulWidget {

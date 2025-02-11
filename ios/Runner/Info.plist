@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>Mighty Games</string>
+	<string>Oyun Havuzu</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -13,7 +13,7 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>MightyGames</string>
+	<string>Oyun Havuzu</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
@@ -31,6 +31,8 @@
 		<key>NSAllowsArbitraryLoadsInWebContent</key>
 		<true/>
 	</dict>
+	<key>NSUserTrackingUsageDescription</key>
+	<string>Size daha iyi bir oyun deneyimi sunabilmek için izninizi istiyoruz. Oyun Havuzu ve içeriğindeki oyun kaynakları, size özel öneriler sunabilmek ve oyun deneyiminizi iyileştirebilmek için çerez ve reklam kimliği kullanmaktadır. Not: Uygulamamızda yer alan oyunlar farklı kaynaklardan gelmekte olup, bu kaynaklar kendi çerez politikalarını uygulayabilir.</string>
 	<key>SKAdNetworkItems</key>
 	<array>
 		<dict>
